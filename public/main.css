@@ -1,0 +1,17 @@
+.container {
+    margin-top: 2.5rem
+}
+
+.shop-image {
+    width: 100%;
+    height: 50vh;
+}
+
+
+.well{
+    margin-bottom: 1rem;
+}
+
+.form-delete{
+    display: inline-block;
+}
