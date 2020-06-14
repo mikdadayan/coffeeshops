@@ -41,10 +41,11 @@ exports.postAddShop = (req, res, next) => {
 
 
 exports.getEditShop = (req, res, next) => {
+    console.log("#################")
     const shopId = req.params.shopId;
     Shop.findById(shopId)
         .then(shop => {
-            if(shop.userId !== req.user._id){
+            if(shop.user.userId.toString() !== req.user._id.toString()){
                 return res.redirect('/shops/' + shopId)
             }
             res.render('./admin/edit-shop', {
@@ -64,7 +65,7 @@ exports.postEditShop = (req, res, next) => {
     const updatedDescription = req.body.description;
     Shop.findById(shopId)
         .then(shop => {
-            if(shop.userId !== req.user._id){
+            if(shop.user.userId.toString() !== req.user._id.toString()){
                 return res.redirect('/shops/' + shopId)
             }
             console.log(shop)
@@ -87,12 +88,14 @@ exports.postEditShop = (req, res, next) => {
 
 exports.postDeleteShop = (req, res, next) => {
     const shopId = req.body.shopId;
-    Shop.deleteOne({_id: shopId, userId: req.user._id})
-    .then(result => {
-        // console.log(result);
-        res.redirect('/');
-    })
-    .catch(err => {
-        console.log(err);
-    })
+    console.log(req.user._id)
+    Shop.deleteOne({_id: shopId,  'user.userId': req.user._id}) 
+        .then(result => {
+            console.log(shopId)
+            console.log("%%%%%%%%%%%%%%");
+            res.redirect('/');
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }

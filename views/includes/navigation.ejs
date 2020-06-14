@@ -17,7 +17,7 @@
         <li class="nav-item"><a href="/signup" class="nav-link text-light pl-2 pr-2 h-100 ">Sign Up</a></li>
         <li class="nav-item"><a href="/login" class="nav-link text-light pl-2 pr-2 h-100 "> Login</a></li>
         <% } else { %> 
-        <li class="nav-item"><span class="nav-link text-light pl-2 pr-2 h-100 "><%=email ? email : ''%></span></li>
+        <li class="nav-item"><span class="nav-link text-light pl-2 pr-2 h-100 "><b>Signed in as</b> <%=email ? email : ''%></span></li>
         <li class="nav-item">
             <form class="form-delete"  action="/logout" method="POST">
                 <button style="background-color: #b5b5b5" class="btn text-light" type="submit">Logout</button>

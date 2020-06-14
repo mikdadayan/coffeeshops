@@ -8,7 +8,7 @@ router.get('/admin/add-shop', isAuth, adminController.getAddShop);
 
 router.post('/admin/add-shop', isAuth, adminController.postAddShop);
 
-router.get('/admin/edit-shop/:shopId', isAuth, adminController.getEditShop);
+router.get('/admin/edit-shop/:shopId',  adminController.getEditShop);
 
 router.post('/admin/edit-shop', isAuth, adminController.postEditShop);
 

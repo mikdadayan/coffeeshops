@@ -37,6 +37,8 @@ exports.getShop = (req, res, next) => {
     
 }
 
+
+
 exports.getAddComment = (req, res, next) => {
     const shopId = req.params.shopId;
     res.render('./shop/add-comment', {
