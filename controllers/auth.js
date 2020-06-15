@@ -15,7 +15,12 @@ const User = require('../models/user');
 exports.getSignup = (req, res, next) => {
     res.status(200).render('./auth/signup', {
         pageTitle: 'Sign Up',
-        errorMessage: ''
+        errorMessage: '',
+        oldInput: {
+            email: '',
+            password: '',
+            confirmPass: ''
+        }
     });
 }
 
@@ -27,7 +32,12 @@ exports.postSignup = (req, res, next) => {
     if(!errors.isEmpty()){
         return res.status(422).render('./auth/signup', {
             pageTitle: 'Sign Up',
-            errorMessage: errors.array()[0].msg
+            errorMessage: errors.array()[0].msg,
+            oldInput: {
+                email: email,
+                password: password,
+                confirmPass: req.body.confirmPass
+            }
         });
     }
     bcrypt.hash(password, 12)
