@@ -15,3 +15,18 @@
 .form-delete{
     display: inline-block;
 }
+
+.error-message{
+    width: 70%;
+    background: #fa9db0;
+    color: #ff1444;
+    border: 1px solid #ff1444;
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 auto
+}
+
+.error-message p {
+    margin: auto;
+    padding: 10px 20px;
+}

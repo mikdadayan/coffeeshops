@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-
 const nodemailer = require('nodemailer');
 const sendgirdTransport = require('nodemailer-sendgrid-transport');
+const {validationResult} = require('express-validator/check');
 
 const transport = nodemailer.createTransport(sendgirdTransport({
     auth: {
@@ -14,36 +14,38 @@ const User = require('../models/user');
 
 exports.getSignup = (req, res, next) => {
     res.status(200).render('./auth/signup', {
-        pageTitle: 'Sign Up'
+        pageTitle: 'Sign Up',
+        errorMessage: ''
     });
 }
 
 exports.postSignup = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    User.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                console.log('EMail already exists!!!!!')
-                return res.status(302).redirect('/signup');
-            }
-            return bcrypt.hash(password, 12)
-                .then(hashedPass => {
-                    const newUser = new User({
-                        email: email,
-                        password: hashedPass
-                    });
-                    return newUser.save()
-                })
-                .then(result => {
-                    transport.sendMail({
-                        to: 'mdadayan07@gmail.com',
-                        from: 'CoffeeShop@shop.am',
-                        subject: 'Sign Up succeeded!',
-                        html: '<html>You successfuly signed up!</html>'
-                    })
-                    res.redirect('/login')
-                })
+    const errors = validationResult(req);
+    console.log(errors.array())
+    if(!errors.isEmpty()){
+        return res.status(422).render('./auth/signup', {
+            pageTitle: 'Sign Up',
+            errorMessage: errors.array()[0].msg
+        });
+    }
+    bcrypt.hash(password, 12)
+        .then(hashedPass => {
+            const newUser = new User({
+                email: email,
+                password: hashedPass
+            });
+            return newUser.save()
+        })
+        .then(result => {
+            transport.sendMail({
+                to: 'mdadayan07@gmail.com',
+                from: 'CoffeeShop@shop.am',
+                subject: 'Sign Up succeeded!',
+                html: '<html>You successfuly signed up!</html>'
+            })
+            res.redirect('/login')
         })
         .catch(err => {
             console.log(err)
