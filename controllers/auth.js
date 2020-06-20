@@ -20,7 +20,8 @@ exports.getSignup = (req, res, next) => {
             email: '',
             password: '',
             confirmPass: ''
-        }
+        },
+        validationErrs: []
     });
 }
 
@@ -37,7 +38,8 @@ exports.postSignup = (req, res, next) => {
                 email: email,
                 password: password,
                 confirmPass: req.body.confirmPass
-            }
+            },
+            validationErrs: errors.array()
         });
     }
     bcrypt.hash(password, 12)
@@ -65,18 +67,33 @@ exports.postSignup = (req, res, next) => {
 
 exports.getLogin = (req, res, next) => {
     res.render('./auth/login', {
-        pageTitle: 'Login'
+        pageTitle: 'Login',
+        oldInput: {
+            email: '',
+            password: ''
+        },
+        errorMessage: '',
+        validationErrs: []
     })
 }
 
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    const errors = validationResult(req);
     User.findOne({ email: email })
         .then(user => {
             if (!user) {
-                console.log("Wrong Email or Password");
-                return res.redirect('/login')
+                const error = new Error('Wrong username or password');
+                return res.status(422).render('./auth/login', {
+                    pageTitle: 'Login',
+                    oldInput: {
+                        email: email,
+                        password: password
+                    },
+                    errorMessage: error.message,
+                    validationErrs: [{param: 'email'}, {param: 'password'}]
+                })
             }
             bcrypt.compare(password, user.password)
                 .then(doMatch => {
@@ -88,7 +105,15 @@ exports.postLogin = (req, res, next) => {
                             res.redirect('/')
                         })
                     }
-                    res.redirect('/login');
+                    return res.status(422).render('./auth/login', {
+                        pageTitle: 'Login',
+                        oldInput: {
+                            email: email,
+                            password: password
+                        },
+                        errorMessage: 'Wrong password',
+                        validationErrs: [{param: 'password'}]
+                    })
                 })
                 .catch(err => {
                     console.log(err);

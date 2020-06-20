@@ -21,8 +21,10 @@ router.post(
             })
         }),
     body('password', 'Please enter a password with min 8 characters.')
+        .trim()
         .isLength({min: 8}),
     body('confirmPass')
+        .trim()
         .custom((value, {req})=>{
             if(value !== req.body.password)
                 throw new Error('Passwords have to match');
@@ -32,7 +34,12 @@ router.post(
     authController.postSignup
 );
 
-router.get('/login', authController.getLogin);
+router.get('/login', 
+    check('email')
+        .isEmail()
+        .withMessage('Please enter a valid email.'),
+
+authController.getLogin);
 
 router.post('/login', authController.postLogin);
 
