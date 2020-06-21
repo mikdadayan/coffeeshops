@@ -23,6 +23,7 @@ exports.getShop = (req, res, next) => {
                 shopOwn = (shop.user.userId.toString() == req.user._id.toString()) ? true : false;
                 userId = req.user._id
             }
+            console.log(shop.comments)
             res.render('./shop/coffeshop', {
                 shop: shop,
                 pageTitle: shop.name,
@@ -36,7 +37,6 @@ exports.getShop = (req, res, next) => {
         })
     
 }
-
 
 
 exports.getAddComment = (req, res, next) => {
@@ -78,7 +78,7 @@ exports.getEditComment = (req, res, next) => {
     const shopId = req.params.shopId;
     Comment.findById(commentId)
         .then(comment => {
-            if(comment.userId !== req.user._id){
+            if(comment.user.userId.toString() !== req.user._id.toString()){
                 return res.redirect('/shops/' + shopId)
             }
             res.render('./shop/edit-comment', {
@@ -98,7 +98,8 @@ exports.postEditComment = (req, res, next) => {
    const updatedText = req.body.comment;
    Comment.findById(commentId)
     .then( comment => {
-        if(comment.userId !== req.user._id){
+        console.log("^^^^^^^^^^^^")
+        if(comment.user.userId.toString() !== req.user._id.toString()){
             return res.redirect('/shops/' + shopId)
         }
         comment.text = updatedText;
@@ -123,7 +124,7 @@ exports.postEditComment = (req, res, next) => {
 exports.postDeleteComment = (req, res, next) => {
     const commentId = req.body.commentId;
     const shopId = req.body.shopId;
-    Comment.deleteOne({_id: commentId, userId: req.user._id})
+    Comment.deleteOne({_id: commentId, 'user.userId': req.user._id})
     .then(result => {
         // console.log(result);
         res.redirect('/shops/' + shopId);

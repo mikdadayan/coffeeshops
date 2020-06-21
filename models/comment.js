@@ -15,7 +15,11 @@ const commentSchema = new Schema({
         email: {
             type: String,
             required: true
-        }
+        },
+    },
+    time: {
+        type: Date,
+        default: Date.now()
     }
 })
 

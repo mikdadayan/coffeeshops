@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-9">
                 <div class="thumbnail">
-                    <img class="img-responsive shop-image" src="<%=shop.imageUrl%>" alt="Campground Image">
+                    <img class="img-responsive shop-image" src="http://localhost:3000/<%=shop.imageUrl%>" alt="Campground Image">
                     <div class="caption-full">
                         <h4><a href=""><%= shop.name%></a></h4>
                         <p><%=shop.description%></p>
@@ -23,7 +23,7 @@
                 </div>
                 <% if(isAuthenticated && shopOwn) { %> 
                 <div class="well">
-                    <a href="/admin/edit-shop/<%= shop._id %> " class="btn btn-warning">Edit</a>
+                    <a href="/admin/edit-shop/<%= shop._id %>" class="btn btn-warning">Edit</a>
                     <form class="form-delete" action="/admin/delete-shop" method="POST">
                         <input type="hidden" name="shopId" value="<%=shop._id%>" >
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -37,11 +37,14 @@
                 <ul class="list-group">
                     <% comments.forEach(comment => { %> 
                         <li class="list-group-item list-group-item-light">
+                            <div class="d-flex justify-content-between">
+                                <p class="d-inline-flex"><b><%= comment.user.email %></b></p>
+                                <p class="d-inline-flex"><%= comment.time.toString().split('G')[0] %> </p>
+                            </div>
                             <p><%= comment.text %></p>
                              <% if(isAuthenticated && comment.user.userId.toString() === userId.toString()) { %> 
                                 <div class="well">
                                     <a href="/shops/<%= shop._id %>/comments/edit-comment/<%= comment._id %>" class="btn btn-warning btn-sm">Edit</a>
-                                
                                     <form class="form-delete" action="/shops/comments/delete-comment" method="POST">
                                         <input type="hidden" name="commentId" value="<%= comment._id %>" >
                                         <input type="hidden" name="shopId" value="<%= shop._id %>" >
