@@ -51,8 +51,6 @@ exports.getAddComment = (req, res, next) => {
 exports.postAddComment = (req, res, next) => {
     const shopId = req.body.shopId;
     const newComment = req.body.comment;
-    console.log(req.user._id)
-    console.log(req.user.email)
     const comment = new Comment({
         text: newComment,
         user: {
