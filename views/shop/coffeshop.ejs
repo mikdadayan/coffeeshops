@@ -3,35 +3,36 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %> 
-    <div class="container">
+    <div class="container mt-0">
         <div class="row">
-            <div class="col-md-3">
+            <!-- <div class="col-md-12">
                 <p class="lead">CoffeShop</p>
-                <div class="list-group ">
-                    <li class="list-group-item list-group-item-secondary"><%= shop.address || 'Info 1' %></li>
-                    <li class="list-group-item"><%= (shop.phone) || 'Info 2' %></li>
-                    <li class="list-group-item">Info 3</li>
-                </div>
-            </div>
-            <div class="col-md-9">
+            </div> -->
+            <div class="col-md-12 border">
                 <div class="thumbnail">
                     <img class="img-responsive shop-image" src="http://localhost:3000/<%=shop.imageUrl%>" alt="Campground Image">
                     <div class="caption-full">
-                        <h4><a href=""><%= shop.name%></a></h4>
+                        <h4><a class="text-muted" href=""><%= shop.name%></a></h4>
                         <p><%=shop.description%></p>
                     </div>
                 </div>
                 <% if(isAuthenticated && shopOwn) { %> 
                 <div class="well">
-                    <a href="/admin/edit-shop/<%= shop._id %>" class="btn btn-warning">Edit</a>
+                    <a href="/admin/edit-shop/<%= shop._id %>" class="btn btn-secondary">Edit</a>
                     <form class="form-delete" action="/admin/delete-shop" method="POST">
                         <input type="hidden" name="shopId" value="<%=shop._id%>" >
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
                 <% } %> 
-                <div class="text-right">
-                    <a class="btn btn-success" href="/shops/<%= shop._id %>/comments/add-comment">Add New Comment</a>
+                <div class="list-group ">
+                    <li class="list-group-item list-group-item-secondary"><%= shop.address || 'Info 1' %></li>
+                    <li class="list-group-item"><%= (shop.phone) || 'Info 2' %></li>
+                    <li class="list-group-item">Info 3</li>
+                </div>
+
+                <div class="text-right mt-4">
+                    <a class="btn btn-outline-secondary" href="/shops/<%= shop._id %>/comments/add-comment">Add New Comment</a>
                 </div>
                 <hr>
                 <ul class="list-group">
@@ -44,7 +45,7 @@
                             <p><%= comment.text %></p>
                              <% if(isAuthenticated && comment.user.userId.toString() === userId.toString()) { %> 
                                 <div class="well">
-                                    <a href="/shops/<%= shop._id %>/comments/edit-comment/<%= comment._id %>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="/shops/<%= shop._id %>/comments/edit-comment/<%= comment._id %>" class="btn btn-secondary btn-sm">Edit</a>
                                     <form class="form-delete" action="/shops/comments/delete-comment" method="POST">
                                         <input type="hidden" name="commentId" value="<%= comment._id %>" >
                                         <input type="hidden" name="shopId" value="<%= shop._id %>" >

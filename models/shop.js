@@ -23,6 +23,10 @@ const shopSchema = new Schema({
         requried: true
     },
 
+    menu: {
+       type: String,
+    },
+
     comments: [
         {
             type: Schema.Types.ObjectId,

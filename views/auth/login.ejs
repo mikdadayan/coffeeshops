@@ -11,11 +11,12 @@
             </div>
         <% } %>
         <div class="card mt-5" style="width: 100%;">
-            <h1 class="card-title m-1">Login</h1>
+            <h1 class="card-title m-1 title-color"><i class="fas fa-user"></i> Login</h1>
+            <p>Sign into Your Account</p>
             <div class="card-body">
                 <form action="/login" method="POST">
                     <div class="form-group">
-                        <label for="inputAddress">Email</label>
+                        <label for="inputAddress"><i class="far fa-envelope"></i> Email</label>
                         <input 
                             type="email" 
                             class="form-control <%= validationErrs.find(e => e.param === 'email') ? 'invalid-input' : '' %>" 
@@ -25,7 +26,7 @@
                         >
                         </div>
                     <div class="form-group">
-                        <label for="inputAddress2">Password</label>
+                        <label for="inputAddress2"><i class="fas fa-lock"></i> Password</label>
                         <input 
                             type="password" 
                             class="form-control <%= validationErrs.find(e => e.param === 'password') ? 'invalid-input' : '' %>" 

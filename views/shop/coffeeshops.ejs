@@ -3,8 +3,8 @@
 <body>
     <%- include('../includes/navigation.ejs') %> 
 
-    <div class="container">
-            <div class="jumbotron" style="background: #fff;">
+    <div class="container-fluid">
+            <div class="jumbotron" style="background: #ededed;">
                 <h1 class="display-4">CoFFee Shop</h1>
                 <p class="lead ml-4">Within the last five years, Edinburgh’s coffee landscape has evolved from a mess of chain cafés to a robust collection of artisan coffeehouses. Now, it’s a community that feels present at every counter—beans and provisions from fellow roasters and local purveyors line menus around town—with plenty of cozy spaces to relax, brunch, and breeze through. Eventually, you'll start to see the humdrum coffee break the way this city does: as a friendly, communal act, always meant to be enjoyed. Whether you're in search of a bold espresso to-go, a silky capp to savor alone, or a curious lavender hot chocolate to mull over with friends, you'll find it all on our list of the best coffee shops in Edinburgh.</p>
                 <p class="lead">
@@ -13,12 +13,12 @@
             </div>
             <div class="row">
                 <% shops.forEach(shop => {%>
-                    <div class="card col-xs-12 col-sm-9 col-md-4 col-lg-3 m-0 mb-1 border-0" style="width: 18rem;">
+                    <div class="card col-12 col-sm-6 col-md-4 col-lg-3 m-0 mb-1 border-0" style="width: 18rem;">
                         <img class="card-img-top" src="<%=shop.imageUrl%>" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><%= shop.name %></h5>
                             <p class="card-text"><%= shop.description.substring(0, 50) %> ... </p>
-                            <a href="/shops/<%= shop._id %>" class="btn btn-light">More</a>
+                            <a href="/shops/<%= shop._id %>" class="btn btn-outline-secondary">More Info</a>
                         </div>
                     </div>
                 <%  }) %> 
