@@ -28,4 +28,4 @@ ejs\
 bootstrap 4\
 multer\
 nodemailer\
-nodemailer-sendgrid-transport\
+nodemailer-sendgrid-transport
