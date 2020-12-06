@@ -12,15 +12,15 @@ run npm start
 
 Technologies:
 
-Node.js
-Express.js
-express-session
-express-validator
-mogoDB
-mongoose
-connect-flash
-ejs
-bootstrap 4
-multer
-nodemailer
-nodemailer-sendgrid-transport
+Node.js\
+Express.js\
+express-session\
+express-validator\
+mogoDB\
+mongoose\
+connect-flash\
+ejs\
+bootstrap 4\
+multer\
+nodemailer\
+nodemailer-sendgrid-transport\
