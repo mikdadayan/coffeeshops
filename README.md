@@ -23,9 +23,9 @@ express-session\
 express-validator\
 mogoDB\
 mongoose\
-connect-flash\
 ejs\
 bootstrap 4\
 multer\
 nodemailer\
-nodemailer-sendgrid-transport
+nodemailer-sendgrid-transport\
+connect-flash
