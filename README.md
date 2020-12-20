@@ -27,5 +27,5 @@ ejs\
 bootstrap 4\
 multer\
 nodemailer\
-nodemailer-sendgrid-transport\
-connect-flash
+connect-flash\
+nodemailer-sendgrid-transport
