@@ -26,6 +26,6 @@ mongoose\
 ejs\
 bootstrap 4\
 multer\
-nodemailer\
 connect-flash\
+nodemailer\
 nodemailer-sendgrid-transport
