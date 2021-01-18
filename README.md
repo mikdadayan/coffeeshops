@@ -18,6 +18,10 @@ run npm start
 Technologies:
 
 
+Node.js\
+Express.js\
+express-session\
+express-validator
 mogoDB\
 mongoose\
 ejs\
@@ -25,8 +29,4 @@ multer\
 bootstrap 4\
 connect-flash\
 nodemailer\
-nodemailer-sendgrid-transport\
-Node.js\
-Express.js\
-express-session\
-express-validator
+nodemailer-sendgrid-transport
