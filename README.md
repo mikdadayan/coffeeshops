@@ -4,7 +4,7 @@ A Node.js web app
 Built with Node, Express.js, Bootstrap, MongoDB.
 
 # Getting Started
-clone this repo
+Clone this repo
 connect this app to your mongoDB server in app.js
 run npm install
 run npm start
