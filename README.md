@@ -15,7 +15,7 @@ run npm start
 
 ![coffeeshop3](https://user-images.githubusercontent.com/64751116/101290313-cfb54280-381a-11eb-9fde-76b5c244fb97.png)
 
-Technologies:
+Used Technologies:
 
 
 Node.js\
