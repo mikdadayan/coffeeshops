@@ -25,7 +25,7 @@ express-validator
 mogoDB\
 mongoose\
 ejs\
-multer\
+multer
 
 bootstrap 4\
 connect-flash\
