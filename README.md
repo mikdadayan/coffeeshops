@@ -18,6 +18,11 @@ run npm start
 Used Technologies:
 
 
+bootstrap 4\
+connect-flash\
+nodemailer\
+nodemailer-sendgrid-transport
+
 Node.js\
 Express.js\
 express-session\
@@ -26,8 +31,3 @@ mogoDB\
 mongoose\
 ejs\
 multer
-
-bootstrap 4\
-connect-flash\
-nodemailer\
-nodemailer-sendgrid-transport
