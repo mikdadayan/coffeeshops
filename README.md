@@ -1,7 +1,11 @@
 # CoffeeShops Website
 A Node.js web app
 
-Built with Node, Express.js, Bootstrap, MongoDB.
+Built with `
+Node, 
+Express.js, 
+Bootstrap, 
+MongoDB.
 
 # Getting Started
 Clone this repo
